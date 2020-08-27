@@ -1,0 +1,27 @@
+{
+  "name": "observact",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/observact.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "microbundle"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adhywiranata/observact.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adhywiranata/observact/issues"
+  },
+  "homepage": "https://github.com/adhywiranata/observact#readme",
+  "devDependencies": {
+    "microbundle": "^0.12.3"
+  },
+  "source": "src/index.ts",
+  "module": "dist/observact.module.js",
+  "unpkg": "dist/observact.umd.js"
+}
