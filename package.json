@@ -2,7 +2,11 @@
   "name": "observact",
   "version": "0.1.0",
   "description": "",
-  "main": "dist/observact.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "microbundle"
@@ -20,8 +24,5 @@
   "homepage": "https://github.com/adhywiranata/observact#readme",
   "devDependencies": {
     "microbundle": "^0.12.3"
-  },
-  "source": "src/index.ts",
-  "module": "dist/observact.module.js",
-  "unpkg": "dist/observact.umd.js"
+  }
 }
