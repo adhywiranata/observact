@@ -74,3 +74,7 @@ const myStore = createStore({
 
 myStore.set('theme', 'dark') // will log additional information using `myMiddleware`
 ```
+
+## License
+
+MIT
