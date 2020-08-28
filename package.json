@@ -17,8 +17,8 @@
     "url": "git+https://github.com/adhywiranata/observact.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Adhy Wiranata <adhywiranatap@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/adhywiranata/observact/issues"
   },
