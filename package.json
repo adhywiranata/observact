@@ -1,7 +1,7 @@
 {
   "name": "observact",
   "version": "1.0.0",
-  "description": "",
+  "description": "Minimal, Zero-dependencies Reactive Global Store with Observer Pattern",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "source": "src/index.ts",
