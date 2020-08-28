@@ -1,0 +1,19 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js",
+    "start:ts": "ts-node main-ts.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "observact": "^1.0.1"
+  },
+  "devDependencies": {
+    "ts-node": "^9.0.0"
+  }
+}

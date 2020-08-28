@@ -1,13 +1,15 @@
-const observact = require('../dist/observact')
+import {createStore, createMiddleware, loggerMiddleware} from 'observact'
 
-const myStore = observact.createStore({
+console.log(createMiddleware)
+
+const myStore = createStore({
   domains: [
     {key: 'cart', persist: true, value: []},
     {key: 'theme', value: 'light'}
   ],
+  middlewares: [loggerMiddleware]
 })
 
-console.log(myStore.validateDomainExistence('asd'))
 console.log(myStore.get('theme'))
 myStore.observe('theme', (val) => console.log('wow! change theme to', val))
 myStore.observe('theme', (val) => console.log('listener kedua', val))
