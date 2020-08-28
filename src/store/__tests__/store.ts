@@ -172,3 +172,9 @@ test('Store with multiple domains data able to attach multiple observer handlers
   expect(mockThemeHandler).toBeCalledTimes(2)
   expect(mockProfileHandler).toBeCalledTimes(2)
 })
+
+test('Store will return a list of domain keys', () => {
+  const store = createStore({ domains: fakeMultipleDomainData })
+
+  expect(store.getDomainKeys()).toEqual(fakeMultipleDomainData.map(dd => dd.key))
+})

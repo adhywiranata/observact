@@ -43,6 +43,14 @@ class Store implements ObservactStore {
   }
 
   /**
+   * Retrieves all domain data keys
+   * @returns array of string
+   */
+  public getDomainKeys(): string[] {
+    return this.#domainLookupKeys
+  }
+
+  /**
    * Retrieves the current value of the domain data
    * @param domainKey Domain data key to retrieve
    * @returns value inside the domain key

@@ -1,11 +1,10 @@
-import { Domain } from "domain"
-
 export type DomainKey = string
 export type DomainVal = any
 
 /** Public API of ObservactStore */
 export interface ObservactStore {
   get(domainName: DomainKey): DomainVal
+  getDomainKeys(): string[]
   set(domainKey: DomainKey, value: DomainVal): void
   observe(domainKey: DomainKey, handler: ObserverHandler): void
   clearObservers(): void
