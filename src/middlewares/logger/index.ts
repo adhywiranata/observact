@@ -1,4 +1,4 @@
-import {createMiddleware} from '../../index'
+import {createMiddleware} from '../createMiddleware'
 
 const loggerMiddleware = createMiddleware(({store, incomingMutation}) => {
   const domainKeyToInspect = incomingMutation.key

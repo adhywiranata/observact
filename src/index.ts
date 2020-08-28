@@ -1,55 +1,23 @@
-type DomainKey = string
-type DomainVal = any
+import {
+  DomainKey,
+  DomainVal,
+  ObserverMap,
+  DomainMapStore,
+  StoreMiddleware,
+  ObserverHandler,
+  StoreConstructorArgs,
+  ObservactStore,
+} from './types'
 
-/** Map of domain data inside the Store */
-interface DomainMapStore {
-  /** Unique domain key. The top level for the observer to observe. */
-  key: DomainKey
-  /** Flag to ensure that this domain is persistent using specific persistance engine. */
-  persist?: boolean
-  /** Flag to ensure reactivity only reacts on value change. */
-  reactOnlyOnChange?: boolean
-  /** Actual value of the domain data inside the store. */
-  value: DomainVal
-}
-
-/** Key Value pair of domain data. */
-interface DomainKeyVal {
-  key: DomainKey
-  value: DomainVal
-}
-
-/** Arguments for middleware handler */
-interface MiddlewareHandlerArg {
-  store: Store
-  incomingMutation: DomainKeyVal
-}
-
-/** Function which runs the actual process or implementation details of the middleware. */
-type MiddlewareHandler = (arg: MiddlewareHandlerArg) => void
-
-/** Function which runs when a specific observer responds to a mutation */
-type ObserverHandler = (value: DomainVal) => void
-
-interface ObserverMap {
-  key: DomainKey
-  act: ObserverHandler
-}
-
-interface StoreMiddleware {
-  name: string
-  exec: MiddlewareHandler
-}
-
-interface StoreCreationDTO {
-  domains: DomainMapStore[]
-  middlewares?: StoreMiddleware[]
-}
+import {
+  createMiddleware,
+  loggerMiddleware,
+} from './middlewares'
 
 /**
  * Global Store for all states across domains
  */
-class Store {
+class Store implements ObservactStore {
   /** Collection of active observers with handlers inside each. */
   #observers: ObserverMap[]
   /** Collection of domain-based data of the Store. */
@@ -59,7 +27,7 @@ class Store {
   /** Collection of registered middlewares compatible to the Store. */
   #middlewares: StoreMiddleware[]
 
-  public constructor(storeInitiator: StoreCreationDTO) {
+  public constructor(storeInitiator: StoreConstructorArgs) {
     this.#observers = []
     this.#middlewares = [].concat(storeInitiator.middlewares || [])
     this.#domains = storeInitiator.domains
@@ -135,25 +103,18 @@ class Store {
 }
 
 /**
- * Creates Store middleware to get or mutate values inside the Store
- * @param fn Function that do the work using the provided store
- * @param name Name of the middleware
- * @returns StoreMiddleware
- */
-function createMiddleware (fn: MiddlewareHandler, name: string): StoreMiddleware {
-  return {
-    name,
-    exec: (arg: MiddlewareHandlerArg): void => fn(arg),
-  }
-}
-
-/**
  * Factory function which creates a Store which consists of data domains
  * @param storeInitiator Store definition
  * @returns Store
  */
-function createStore(storeInitiator: StoreCreationDTO): Store {
+function createStore(storeInitiator: StoreConstructorArgs): Store {
   return new Store(storeInitiator)
 }
 
-export {createMiddleware, createStore}
+export {
+  // factory functions
+  createStore,
+  createMiddleware,
+  // built-in middlewares
+  loggerMiddleware,
+}

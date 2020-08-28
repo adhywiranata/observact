@@ -1,4 +1,4 @@
-import {createStore, createMiddleware} from '../dist'
+import {createStore, createMiddleware, loggerMiddleware} from '../dist'
 
 console.log(createMiddleware)
 
@@ -7,7 +7,7 @@ const myStore = createStore({
     {key: 'cart', persist: true, value: []},
     {key: 'theme', value: 'light'}
   ],
-  middlewares: []
+  middlewares: [loggerMiddleware]
 })
 
 console.log(myStore.get('theme'))
