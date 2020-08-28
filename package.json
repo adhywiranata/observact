@@ -8,7 +8,8 @@
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
     "build": "microbundle"
   },
   "repository": {
@@ -23,6 +24,8 @@
   },
   "homepage": "https://github.com/adhywiranata/observact#readme",
   "devDependencies": {
-    "microbundle": "^0.12.3"
+    "jest": "^26.4.2",
+    "microbundle": "^0.12.3",
+    "ts-jest": "^26.3.0"
   }
 }

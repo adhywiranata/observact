@@ -34,9 +34,12 @@ class Store implements ObservactStore {
    * @param domainKey Domain data key to validate
    */
   private validateDomainExistence(domainKey: DomainKey) {
-    if (!this.#domainLookupKeys.includes(domainKey)) {
-      throw Error('domain `' + domainKey + '` is not specified during `createStore` phase.')
+    const isFound = this.#domainLookupKeys.includes(domainKey)
+    if (!isFound) {
+      console.error('domain `' + domainKey + '` is not specified during `createStore` phase.')
     }
+
+    return isFound
   }
 
   /**
@@ -45,7 +48,10 @@ class Store implements ObservactStore {
    * @returns value inside the domain key
    */
   public get(domainKey: DomainKey): DomainVal {
-    this.validateDomainExistence(domainKey)
+    if(!this.validateDomainExistence(domainKey)) {
+      return null
+    }
+
     return this.#domains[this.#domainLookupKeys.indexOf(domainKey)].value
   }
 
@@ -56,7 +62,9 @@ class Store implements ObservactStore {
    */
   public set(domainKey: DomainKey, value: DomainVal): void {
     // input validations
-    this.validateDomainExistence(domainKey)
+    if(!this.validateDomainExistence(domainKey)) {
+      return;
+    }
 
     // run registered middlewares to process values based on current store
     this.#middlewares.forEach(middleware => {

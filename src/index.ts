@@ -1,11 +1,2 @@
-import { createMiddleware, loggerMiddleware } from './middlewares'
-
-import { createStore } from './store'
-
-export {
-  // factory functions
-  createStore,
-  createMiddleware,
-  // built-in middlewares
-  loggerMiddleware,
-}
+export { createMiddleware, loggerMiddleware } from './middlewares'
+export { createStore } from './store'

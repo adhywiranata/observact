@@ -7,6 +7,8 @@ export type DomainVal = any
 export interface ObservactStore {
   get(domainName: DomainKey): DomainVal
   set(domainKey: DomainKey, value: DomainVal): void
+  observe(domainKey: DomainKey, handler: ObserverHandler): void
+  clearObservers(): void
 }
 
 /** Map of domain data inside the Store */
